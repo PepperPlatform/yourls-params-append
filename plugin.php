@@ -3,7 +3,7 @@
 Plugin Name: URL Params Append
 Plugin URI: https://github.com/PepperPlatform/yourls-params-append
 Description: Appends url params based on selected platform(e.g facebook is a platform)
-Version: 0.1
+Version: 0.2
 Author: Tinashe - @Pepper
 Author URI: https://github.com/tm57
 */
