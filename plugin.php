@@ -19,7 +19,7 @@ yourls_add_filter('shunt_html_addnew', 'add_create_form');
 // Show the saved params
 yourls_add_action('show_save_url_params_form', 'show_platform_params');
 
-
+// Use own js add_link function
 yourls_add_action('html_head', 'override_js');
 
 
