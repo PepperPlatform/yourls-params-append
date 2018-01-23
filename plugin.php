@@ -156,6 +156,15 @@ function create_link() {
 	var newurl = $("#add-url").val();
 	var nonce = $("#nonce-add").val();
 	var url_params = $("#url_params").val();
+	var campaign = $("#campaign").val();
+	
+	if(!campaign ){
+		var message = 'Please enter the custom campaign';
+		feedback(message, 'error');
+		return;
+		
+	}
+	const params = url_params.trim() + '&utm_campaign='+ campaign.trim();
 	if (!newurl || newurl == 'http://' || newurl == 'https://') {
 		return;
 	}
@@ -163,7 +172,7 @@ function create_link() {
 	add_loading("#add-button");
 	$.getJSON(
 		ajaxurl,
-		{action: 'add', url: newurl + url_params, keyword: keyword, nonce: nonce},
+		{action: 'add', url: newurl + params, keyword: keyword, nonce: nonce},
 		function (data) {
 			if (data.status == 'success') {
 				$('#main_table tbody').prepend(data.html).trigger("update");

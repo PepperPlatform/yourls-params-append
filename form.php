@@ -7,6 +7,9 @@
 					<?php yourls_e('Optional '); ?> :
 					<strong><?php yourls_e('Custom short URL'); ?></strong>:<input type="text" id="add-keyword" name="keyword" value="" class="text" size="8"/>
 					<?php yourls_nonce_field('add_url', 'nonce-add'); ?>
+					<br />
+
+					<strong><?php yourls_e('Custom Campaign Value'); ?></strong>:<input type="text" id="campaign" name="campaign" value="" class="text" size="80" placeholder="Required" />
 
 					<br/>
 					<label><strong>Select Platform to append url parameters</strong></label>
