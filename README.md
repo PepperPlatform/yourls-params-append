@@ -10,3 +10,8 @@ Now when adding a new url to the url shortener, you won't have to type those par
 That's it.
 
 
+#Installation
+
+You will need to dump the `init.sql` into your database so that plugin works as expected.
+
+create a folder `/user/plugins/yourls-params-append` and dump the files in there. Then use the admin section to activate the plugin.
