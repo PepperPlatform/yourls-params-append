@@ -19,6 +19,10 @@ yourls_add_filter('shunt_html_addnew', 'add_create_form');
 // Show the saved params
 yourls_add_action('show_save_url_params_form', 'show_platform_params');
 
+
+yourls_add_action('html_head', 'override_js');
+
+
 // Register our plugin
 yourls_register_plugin_page('save_platform_params', 'Save Platform Url Params', 'save_url_params');
 
@@ -138,4 +142,46 @@ function add_select_to_form() {
 function add_create_form() {
 
 	include_once 'form.php';
+}
+
+function override_js() {
+
+	echo <<<JS
+
+<script>
+function create_link() {
+	if ($('#add-button').hasClass('disabled')) {
+		return false;
+	}
+	var newurl = $("#add-url").val();
+	var nonce = $("#nonce-add").val();
+	var url_params = $("#url_params").val();
+	if (!newurl || newurl == 'http://' || newurl == 'https://') {
+		return;
+	}
+	var keyword = $("#add-keyword").val();
+	add_loading("#add-button");
+	$.getJSON(
+		ajaxurl,
+		{action: 'add', url: newurl + url_params, keyword: keyword, nonce: nonce},
+		function (data) {
+			if (data.status == 'success') {
+				$('#main_table tbody').prepend(data.html).trigger("update");
+				$('#nourl_found').css('display', 'none');
+				zebra_table();
+				increment_counter();
+				toggle_share_fill_boxes(data.url.url, data.shorturl, data.url.title);
+			}
+
+			add_link_reset();
+			end_loading("#add-button");
+			end_disable("#add-button");
+
+			feedback(data.message, data.status);
+		}
+	);
+}
+</script>
+
+JS;
 }

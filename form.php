@@ -12,7 +12,7 @@
 					<label><strong>Select Platform to append url parameters</strong></label>
 					<?php add_select_to_form() ?>
 					<br/>
-					<input type="button" id="add-button" name="add-button" value="<?php yourls_e('Shorten The URL'); ?>" class="button" onclick="add_link();"/>
+					<input type="button" id="add-button" name="add-button" value="<?php yourls_e('Shorten The URL'); ?>" class="button" onclick="create_link();"/>
 				</div>
 			</form>
 			<div id="feedback" style="display:none"></div>
